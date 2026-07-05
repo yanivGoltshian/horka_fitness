@@ -5,13 +5,23 @@ import ProductCube from "@/components/ProductCube";
 import LeadForm from "@/components/LeadForm";
 import JsonLd from "@/components/JsonLd";
 import SocialButtons from "@/components/SocialButtons";
+import ReelGrid from "@/components/ReelGrid";
+import Animations from "@/components/Animations";
 import { faqPageLd } from "@/lib/structured-data";
 
 const h = homepage;
 
+const galleryReels = h.gallery.images.map((src, i) => ({
+  video: asset(src.replace("/images/gallery/gallery-", "/videos/reel-").replace(".jpg", ".mp4")),
+  poster: asset(src),
+  position: imageFocus(src),
+  alt: `${site.name} – ${i + 1}`,
+}));
+
 export default function Home() {
   return (
     <>
+      <Animations />
       {h.faq && h.faq.length > 0 && <JsonLd data={faqPageLd(h.faq)} />}
 
       {/* ===== HERO ===== */}
@@ -80,11 +90,11 @@ export default function Home() {
       {/* ===== ADVANTAGES ===== */}
       <section id="advantages" className="py-16 sm:py-24 bg-cream">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="text-center max-w-2xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto" data-animate>
             <p className="text-eco-dark font-semibold text-sm tracking-wide">היתרון של הורקה</p>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">למה מתאמנים בוחרים בנו</h2>
           </div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-animate-group>
             {h.advantages.map((a) => (
               <div key={a.title} className="card-elegant rounded-2xl bg-surface p-6 border border-border/70 hover:-translate-y-1 transition">
                 <div className="text-3xl">{a.icon}</div>
@@ -99,7 +109,7 @@ export default function Home() {
       {/* ===== INTRO / ABOUT ===== */}
       <section id="about" className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <div className="relative order-1 lg:order-none">
+          <div className="relative order-1 lg:order-none" data-animate>
             <div className="relative aspect-[4/5] w-full max-w-md mx-auto rounded-[2rem] overflow-hidden ring-1 ring-border shadow-xl">
               <Image
                 src={asset(h.intro.image)}
@@ -111,7 +121,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div>
+          <div data-animate>
             <p className="text-eco-dark font-semibold text-sm tracking-wide">{h.intro.eyebrow}</p>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold leading-tight">{h.intro.title}</h2>
             <p className="mt-4 text-lg font-medium text-foreground/90">{h.intro.lead}</p>
@@ -133,12 +143,12 @@ export default function Home() {
       {/* ===== HOW IT WORKS ===== */}
       <section id="how" className="py-16 sm:py-24 bg-ink text-white">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="text-center max-w-2xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto" data-animate>
             <p className="text-gold font-semibold text-sm tracking-wide">{h.howItWorks.eyebrow}</p>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">{h.howItWorks.title}</h2>
             <p className="mt-3 text-white/70">{h.howItWorks.text}</p>
           </div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-animate-group>
             {h.howItWorks.steps.map((s, i) => (
               <div key={s.title} className="relative rounded-2xl border border-white/12 bg-white/5 p-6">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-eco font-display text-lg font-bold text-white">
@@ -154,7 +164,7 @@ export default function Home() {
 
       {/* ===== STATS ===== */}
       <section className="py-14 bg-cream-2">
-        <div className="mx-auto max-w-6xl px-4 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+        <div className="mx-auto max-w-6xl px-4 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center" data-animate-group>
           {h.stats.map((s) => (
             <div key={s.label}>
               <div className="font-display text-4xl sm:text-5xl font-black text-brand">{s.value}</div>
@@ -167,25 +177,12 @@ export default function Home() {
       {/* ===== GALLERY ===== */}
       <section id="gallery" className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="text-center max-w-2xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto" data-animate>
             <p className="text-eco-dark font-semibold text-sm tracking-wide">{h.gallery.eyebrow}</p>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">{h.gallery.title}</h2>
             <p className="mt-3 text-muted">{h.gallery.text}</p>
           </div>
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-            {h.gallery.images.map((src, i) => (
-              <div key={src} className="relative aspect-[3/4] rounded-2xl overflow-hidden ring-1 ring-border group">
-                <Image
-                  src={asset(src)}
-                  alt={`${site.name} – ${i + 1}`}
-                  fill
-                  sizes="(max-width:640px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  style={{ objectPosition: imageFocus(src) }}
-                />
-              </div>
-            ))}
-          </div>
+          <ReelGrid items={galleryReels} />
         </div>
       </section>
 
@@ -195,7 +192,7 @@ export default function Home() {
           <div className="order-2 lg:order-none">
             <ProductCube images={h.cube.images} />
           </div>
-          <div className="order-1 lg:order-none text-center lg:text-right">
+          <div className="order-1 lg:order-none text-center lg:text-right" data-animate>
             <p className="text-gold font-semibold text-sm tracking-wide">{h.cube.eyebrow}</p>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">{h.cube.title}</h2>
             <p className="mt-3 text-white/70 max-w-md mx-auto lg:mx-0">{h.cube.text}</p>
@@ -214,11 +211,11 @@ export default function Home() {
       {/* ===== TESTIMONIALS ===== */}
       <section className="py-16 sm:py-24 bg-cream">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="text-center max-w-2xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto" data-animate>
             <p className="text-eco-dark font-semibold text-sm tracking-wide">{h.testimonials.eyebrow}</p>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">{h.testimonials.title}</h2>
           </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="mt-12 grid gap-5 md:grid-cols-3" data-animate-group>
             {h.testimonials.items.map((t, i) => (
               <figure key={i} className="card-elegant rounded-2xl bg-surface p-7 border border-border/70">
                 <div className="font-display text-4xl leading-none text-gold">”</div>
@@ -234,11 +231,11 @@ export default function Home() {
       {h.faq && h.faq.length > 0 && (
         <section id="faq" className="py-16 sm:py-24">
           <div className="mx-auto max-w-3xl px-4">
-            <div className="text-center">
+            <div className="text-center" data-animate>
               <p className="text-eco-dark font-semibold text-sm tracking-wide">שאלות נפוצות</p>
-              <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">כל מה שרציתן לדעת</h2>
+              <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">כל מה שרציתם לדעת</h2>
             </div>
-            <div className="mt-10 divide-y divide-border rounded-2xl border border-border bg-surface">
+            <div className="mt-10 divide-y divide-border rounded-2xl border border-border bg-surface" data-animate-group>
               {h.faq.map((f) => (
                 <details key={f.q} className="group px-5 py-4">
                   <summary className="flex cursor-pointer items-center justify-between gap-4 font-semibold list-none">
@@ -256,7 +253,7 @@ export default function Home() {
       {/* ===== CONTACT ===== */}
       <section id="contact" className="py-16 sm:py-24 bg-cream-2">
         <div className="mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 lg:gap-14">
-          <div>
+          <div data-animate>
             <p className="text-eco-dark font-semibold text-sm tracking-wide">צרו קשר</p>
             <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">מתחילים באימון ניסיון</h2>
             <p className="mt-3 leading-relaxed text-muted">
@@ -298,7 +295,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="card-elegant rounded-3xl bg-surface p-6 sm:p-8 border border-border/70">
+          <div className="card-elegant rounded-3xl bg-surface p-6 sm:p-8 border border-border/70" data-animate>
             <h3 className="font-display text-xl font-bold">השאירו פרטים</h3>
             <p className="mt-1 text-sm text-muted">נחזור אליכם בהקדם 🙂</p>
             <div className="mt-6">
