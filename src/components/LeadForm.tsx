@@ -9,7 +9,7 @@ const GOALS = [
   "ירידה במשקל",
   "שיקום וחזרה לפעילות",
   "בריאות וכושר כללי",
-  "עדיין לא בטוחה",
+  "עדיין לא בטוחים",
 ];
 
 export default function LeadForm() {
@@ -62,7 +62,7 @@ export default function LeadForm() {
         <div>
           <label className="block text-sm font-medium mb-1.5">המטרה שלך</label>
           <select className={inputCls} value={form.goal} onChange={set("goal")}>
-            <option value="">בחרי מטרה…</option>
+            <option value="">בחרו מטרה…</option>
             {GOALS.map((g) => (
               <option key={g} value={g}>{g}</option>
             ))}

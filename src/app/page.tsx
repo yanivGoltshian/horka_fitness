@@ -82,7 +82,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4">
           <div className="text-center max-w-2xl mx-auto">
             <p className="text-eco-dark font-semibold text-sm tracking-wide">היתרון של הורקה</p>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">למה מתאמנות בוחרות בנו</h2>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">למה מתאמנים בוחרים בנו</h2>
           </div>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {h.advantages.map((a) => (
@@ -258,9 +258,9 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 lg:gap-14">
           <div>
             <p className="text-eco-dark font-semibold text-sm tracking-wide">צרו קשר</p>
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">מתחילות באימון ניסיון</h2>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold">מתחילים באימון ניסיון</h2>
             <p className="mt-3 leading-relaxed text-muted">
-              משאירות פרטים ונחזור אלייך לתיאום אימון ניסיון ללא התחייבות. אפשר גם להתקשר או לשלוח וואטסאפ ישירות.
+              משאירים פרטים ונחזור אליכם לתיאום אימון ניסיון ללא התחייבות. אפשר גם להתקשר או לשלוח וואטסאפ ישירות.
             </p>
 
             <div className="mt-6 space-y-3 text-sm">
@@ -299,8 +299,8 @@ export default function Home() {
           </div>
 
           <div className="card-elegant rounded-3xl bg-surface p-6 sm:p-8 border border-border/70">
-            <h3 className="font-display text-xl font-bold">השאירי פרטים</h3>
-            <p className="mt-1 text-sm text-muted">נחזור אלייך בהקדם 🙂</p>
+            <h3 className="font-display text-xl font-bold">השאירו פרטים</h3>
+            <p className="mt-1 text-sm text-muted">נחזור אליכם בהקדם 🙂</p>
             <div className="mt-6">
               <LeadForm />
             </div>
