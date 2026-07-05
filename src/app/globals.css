@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+:root {
+  /* cream boutique base */
+  --background: #faf8f3;
+  --cream: #faf8f3;
+  --cream-2: #f1ede4;
+  --foreground: #1f2224;
+  --ink: #0e0e0e;
+  --ink-2: #1f2224;
+
+  /* brand — charcoal/black + olive (from the Horka logo) */
+  --brand: #1f2224;
+  --brand-dark: #0e0e0e;
+  --eco: #7c7f52;
+  --eco-dark: #63663f;
+  --gold: #7c7f52;
+  --gold-dark: #63663f;
+
+  --muted: #6b6f6a;
+  --surface: #ffffff;
+  --border: #e6e2d8;
+
+  /* accent tones */
+  --cat-carry: #1f2224;
+  --cat-food: #2c2f26;
+  --cat-rolls: #7c7f52;
+  --cat-branded: #8a8c5e;
+  --cat-premium: #4f5340;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-cream: var(--cream);
+  --color-cream-2: var(--cream-2);
+  --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-eco: var(--eco);
+  --color-eco-dark: var(--eco-dark);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --font-sans: var(--font-heebo);
+  --font-display: var(--font-frank);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-heebo), "Segoe UI", Arial, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-frank), Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* charcoal + olive hero glow */
+.hero-glow {
+  background:
+    radial-gradient(40rem 40rem at 80% 12%, rgba(124, 127, 82, 0.28), transparent 60%),
+    radial-gradient(34rem 34rem at 10% 86%, rgba(124, 127, 82, 0.16), transparent 60%),
+    radial-gradient(30rem 30rem at 50% 50%, rgba(31, 34, 36, 0.55), transparent 65%),
+    linear-gradient(160deg, #0b0b0b 0%, #1f2224 100%);
+}
+
+.gold-rule {
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--foreground), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card-elegant {
+  box-shadow: 0 1px 2px rgba(20, 20, 18, 0.04), 0 12px 30px -18px rgba(20, 20, 18, 0.28);
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-floaty { animation: floaty 4s ease-in-out infinite; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 0.7s ease-out both; }
+
+/* 3D rotating studio cube */
+.cube-scene {
+  --cube-size: 230px;
+  --cube-half: 115px;
+  width: var(--cube-size);
+  height: var(--cube-size);
+  margin-inline: auto;
+  perspective: 1200px;
+}
+.cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: cube-spin 18s linear infinite;
+}
+.cube-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(124, 127, 82, 0.55);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.28);
+  background: var(--ink);
+}
+.cube-face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.10), transparent 55%);
+  pointer-events: none;
+}
+@keyframes cube-spin {
+  from { transform: rotateX(-18deg) rotateY(0deg); }
+  to { transform: rotateX(-18deg) rotateY(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cube { animation: none; transform: rotateX(-18deg) rotateY(-25deg); }
+}
+
+/* Admin panel: hide the horizontal scrollbar on the tab pills (still scrolls). */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
